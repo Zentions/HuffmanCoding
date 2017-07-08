@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "mydrawing.h"
 #include <QMessageBox>
 #include <QTime>
 MainWindow::MainWindow(QWidget *parent) :
@@ -62,7 +61,6 @@ void MainWindow::on_toolButton_3_clicked()
 
 void MainWindow::on_toolButton_4_clicked()
 {
-    MyDrawing *my = new MyDrawing;
-    my->show();
+
 
 }

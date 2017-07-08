@@ -17,15 +17,12 @@ SOURCES += main.cpp\
     huffmantree.cpp \
     minheap.cpp \
     encodermachine.cpp \
-    decodemachine.cpp \
-    mydrawing.cpp
+    decodemachine.cpp
 
 HEADERS  += mainwindow.h \
     huffmantree.h \
     minheap.h \
     encodermachine.h \
-    decodemachine.h \
-    mydrawing.h
+    decodemachine.h
 
-FORMS    += mainwindow.ui \
-    mydrawing.ui
+FORMS    += mainwindow.ui
