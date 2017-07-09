@@ -1,4 +1,5 @@
 #include "huffmantree.h"
+#include "minheap.cpp"
 //记录了完全前序序列，并用它重新构造了哈夫曼树
 HuffmanTree::HuffmanTree(int size)
 {
@@ -26,7 +27,7 @@ TreeNode* HuffmanTree::mergeTree(TreeNode *h1,TreeNode *h2)
 }
 void HuffmanTree::createTree(TreeNode *table)
 {
-    MinHeap heap(Num+5);
+    MinHeap<TreeNode> heap(Num+5);
     for(int i = 0;i<Num;i++) heap.insert(table[i]);
     TreeNode* parent;
     TreeNode *first,*second;

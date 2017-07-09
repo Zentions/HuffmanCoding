@@ -89,7 +89,6 @@ string EncoderMachine::encode()
 }
 void EncoderMachine::start()
 {
-
     NodeFrequency();
     tree->setNum(textNum);
     tree->createTree(table);

@@ -1,9 +1,9 @@
 #include "minheap.h"
-
-MinHeap::MinHeap(int sz)
+template <class T>
+MinHeap<T>::MinHeap(int sz)
 {
    maxSize = sz;
-   heap = new TreeNode[maxSize];
+   heap = new T[maxSize];
    if(heap== NULL)
    {
        std::cout<<"分配失败";
@@ -11,15 +11,16 @@ MinHeap::MinHeap(int sz)
    }
    currentSize = 0;
 }
-void MinHeap::siftDown(int start,int m)
+template <class T>
+void MinHeap<T>::siftDown(int start,int m)
 {
    int i = start;
    int j = 2*i+1;
-   TreeNode temp = heap[i];
+   T temp = heap[i];
    while(j<=m)
    {
-       if(j<m && heap[j].weight>heap[j+1].weight)j++;
-       if(temp.weight<heap[j].weight)break;
+       if(j<m && heap[j]>heap[j+1])j++;
+       if(temp<heap[j])break;
        else
        {
            heap[i] = heap[j];
@@ -30,14 +31,15 @@ void MinHeap::siftDown(int start,int m)
    }
    heap[i] = temp;
 }
-void MinHeap::siftUp(int start)
+template <class T>
+void MinHeap<T>::siftUp(int start)
 {
    int j = start;
    int i = (j-1)/2;
-   TreeNode temp = heap[j];
+   T temp = heap[j];
    while(j>0)
    {
-       if(heap[i].weight<temp.weight) break;
+       if(heap[i]<temp) break;
        else
        {
            heap[j] = heap[i];
@@ -47,7 +49,8 @@ void MinHeap::siftUp(int start)
    }
    heap[j] = temp;
 }
-bool MinHeap::insert(TreeNode x)
+template <class T>
+bool MinHeap<T>::insert(T x)
 {
     if(currentSize==maxSize)
     {
@@ -58,7 +61,8 @@ bool MinHeap::insert(TreeNode x)
     siftUp(currentSize-1);
     return true;
 }
-TreeNode MinHeap::removeMin()
+template <class T>
+T MinHeap<T>::removeMin()
 {
 
     if(!currentSize)
@@ -66,7 +70,7 @@ TreeNode MinHeap::removeMin()
         std::cout<<"Heap empty";
         exit(1);
     }
-    TreeNode x = heap[0];
+    T x = heap[0];
     heap[0] = heap[currentSize-1];
     currentSize--;
     siftDown(0,currentSize-1);
