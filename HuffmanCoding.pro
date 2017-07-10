@@ -17,12 +17,19 @@ SOURCES += main.cpp\
     huffmantree.cpp \
     minheap.cpp \
     encodermachine.cpp \
-    decodemachine.cpp
+    decodemachine.cpp \
+    nodeitem.cpp \
+    treescene.cpp \
+    treedialog.cpp
 
 HEADERS  += mainwindow.h \
     huffmantree.h \
     minheap.h \
     encodermachine.h \
-    decodemachine.h
+    decodemachine.h \
+    nodeitem.h \
+    treescene.h \
+    treedialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    treedialog.ui

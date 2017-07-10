@@ -32,6 +32,8 @@ void MainWindow::on_toolButton_clicked()
     }
     EncoderMachine machine(oriText,40);
     machine.start();
+    weight = machine.getWeght();
+    num = machine.getNum();
     ui->progressBar->setValue(85);
     ui->textArea->setText(QString::fromStdString(machine.encode()));
     ui->textArea_2->setText(QString::fromStdString(machine.make()));
@@ -61,6 +63,10 @@ void MainWindow::on_toolButton_3_clicked()
 
 void MainWindow::on_toolButton_4_clicked()
 {
-
-
+    if(weight==NULL){
+        QMessageBox::information(this,"Error Message","未添加过要编码的内容");
+        return;
+    }
+   TreeDialog *log = new TreeDialog(weight,num);
+   log->show();
 }

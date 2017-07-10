@@ -6,6 +6,7 @@
 #include<string.h>
 #include "encodermachine.h"
 #include "decodemachine.h"
+#include "treedialog.h"
 using namespace std;
 
 namespace Ui {
@@ -31,6 +32,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    int *weight=NULL;
+    int num;
 };
 
 #endif // MAINWINDOW_H

@@ -1,0 +1,27 @@
+#ifndef NODEVIEW_H
+#define NODEVIEW_H
+#include <QGraphicsItem>
+#include <QPainter>
+#include <QKeyEvent>
+#include <QGraphicsSceneHoverEvent>
+#include <QGraphicsSceneMouseEvent>
+#include <QMenu>
+#include <QGraphicsSceneContextMenuEvent>
+
+class NodeView : public QGraphicsObject
+{
+private:
+    string text;
+    QColor brushColor;
+protected:
+    QRectF boundingRect() const;
+    void keyPressEvent(QKeyEvent *event);
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
+    void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+public:
+    NodeView(string text);
+    void setColor(const QColor &color){brushColor = color;}
+};
+
+#endif // NODEVIEW_H

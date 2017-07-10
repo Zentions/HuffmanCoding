@@ -25,7 +25,8 @@ public:
     void start();
     void writeCodeText();
     void writeTree();
-
+    int *getWeght();//返回权值信息
+    int getNum(){return textNum;}//返回节点个数
 };
 
 #endif // ENCODERMACHINE_H

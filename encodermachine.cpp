@@ -121,3 +121,9 @@ void EncoderMachine::writeTree()
     in<<t;
     file.close();
 }
+int* EncoderMachine::getWeght()
+{
+    int *weight = new int[textNum];
+    for(int i=0;i<textNum;i++) weight[i] = table[i].weight;
+    return weight;
+}
