@@ -1,5 +1,7 @@
 #include "treescene.h"
 #include "minheap.cpp"
+#include <QTime>
+#include <QCoreApplication>
 TreeScene::TreeScene(int *weight,int num)
 {
   this->num = num;
@@ -34,9 +36,13 @@ NodeItem* TreeScene::findMin()
         if(a<b && !vec.at(i)->isVisited()) item = vec.at(i);
     }
     item->setVisit(true);
-    item->setColor(Qt::red);
-    item->update();
     return item;
+}
+void sleep1(unsigned int msec)
+{
+    QTime dieTime = QTime::currentTime().addMSecs(msec);
+    while( QTime::currentTime() < dieTime )
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 void TreeScene::createTree()
 {
@@ -47,10 +53,20 @@ void TreeScene::createTree()
     QString num1 = QString::number(first->text.toInt()+second->text.toInt());
     NodeItem *parent = new NodeItem(num1,first,second);
     parent->setPosition(first->getPosition().rx(),first->getPosition().ry()-40);
+    second->setRight();
+    parent->setColor(Qt::green);
     addItem(parent);
     move(first,second,parent);
     vec.append(parent);
+    if(unVis==num-1)
+    {
+       sleep1(2090);
+       cout<<"222"<<endl;
+       adjust(parent);
+    }
+
 }
+
 void TreeScene::move(NodeItem *first,NodeItem *second,NodeItem *parent)
 {
 
@@ -62,10 +78,8 @@ void TreeScene::move(NodeItem *first,NodeItem *second,NodeItem *parent)
     moveTree(second,x2,y2,x1+30,y1+51.9,group);
     group->addAnimation(animation);
     group->start(QAbstractAnimation::DeleteWhenStopped);
-    QGraphicsLineItem *left = new QGraphicsLineItem(QLineF(x1+15,y1+15,x1-15,y1+66.9));
-    QGraphicsLineItem *right = new QGraphicsLineItem(QLineF(x1+15,y1+15,x1+45,y1+66.9));
-    left->setPen(QPen(Qt::red));
-    right->setPen(QPen(Qt::red));
+    TreeLine *left = new TreeLine(QLineF(x1+15,y1+25,x1-15+5,y1+66.9-5));
+    TreeLine *right = new TreeLine(QLineF(x1+15,y1+25,x1+45-5,y1+66.9-5));
     parent->leftLine = left;
     parent->rightLine = right;
     addItem(left);
@@ -77,10 +91,14 @@ void TreeScene::moveTree(NodeItem *item,qreal x1,qreal y1,qreal x2,qreal y2,QPar
    group->addAnimation(animation);
    if(item->leftNode!=NULL && item->rightNode !=NULL)
    {
-       //QPropertyAnimation *animation1 = setLineAnimation(item->leftLine,x2+15,y2+15,x2-15,y2+66.9);
-      // QPropertyAnimation *animation2 = setLineAnimation(item->rightLine,x2+15,y2+15,x2+45,y2+66.9);
-//       group->addAnimation(animation1);
-//       group->addAnimation(animation2);
+      // QPropertyAnimation *animation1 = setLineAnimation(item->leftLine,x2+15,y2+25,x2-15+5,y2+66.9-5);
+      // QPropertyAnimation *animation2 = setLineAnimation(item->rightLine,x2+15,y2+25,x2+40,y2+66.9-5);
+      // group->addAnimation(animation1);
+      // group->addAnimation(animation2);
+       item->leftLine->setLine(QLineF(x2+15,y2+25,x2-15+5,y2+66.9-5));
+       item->rightLine->setLine(QLineF(x2+15,y2+25,x2+40,y2+66.9-5));
+       item->leftLine->update();
+       item->rightLine->update();
        moveTree(item->leftNode,x1-30,y1+51.9,x2-30,y2+51.9,group);
        moveTree(item->rightNode,x1+30,y1+51.9,x2+30,y2+51.9,group);
    }
@@ -88,16 +106,26 @@ void TreeScene::moveTree(NodeItem *item,qreal x1,qreal y1,qreal x2,qreal y2,QPar
 QPropertyAnimation *TreeScene::setNodeAnimation(NodeItem *item,qreal x1,qreal y1,qreal x2,qreal y2)
 {
     QPropertyAnimation *animation= new QPropertyAnimation(item,"pos");
-    animation->setDuration(3000);
+    animation->setDuration(2000);
     animation->setStartValue(QPointF(x1,y1));
     animation->setEndValue(QPointF(x2,y2));
     return animation;
 }
-//QPropertyAnimation *TreeScene::setLineAnimation(QGraphicsLineItem *item,qreal x1,qreal y1,qreal x2,qreal y2)
-//{
-//    QPropertyAnimation *animation= new QPropertyAnimation(item,"pos");
-//    animation->setDuration(3000);
-//    animation->setStartValue(item->line());
-//    animation->setEndValue(QLineF(x1,y1,x2,y2));
-//    return animation;
-//}
+QPropertyAnimation *TreeScene::setLineAnimation(TreeLine *item,qreal x1,qreal y1,qreal x2,qreal y2)
+{
+    QPropertyAnimation *animation= new QPropertyAnimation(item,"pos");
+    animation->setDuration(2000);
+    cout<<"22222222"<<endl;
+    animation->setStartValue(item->line());
+    animation->setEndValue(QLineF(x1,y1,x2,y2));
+    return animation;
+}
+void TreeScene::adjust(NodeItem *item)
+{
+    if(item->isCollided())item->collideMove();
+    if(item->leftNode!=NULL && item->rightNode !=NULL)
+    {
+        adjust(item->leftNode);
+        adjust(item->rightNode);
+    }
+}

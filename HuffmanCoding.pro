@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     decodemachine.cpp \
     nodeitem.cpp \
     treescene.cpp \
-    treedialog.cpp
+    treedialog.cpp \
+    treeline.cpp
 
 HEADERS  += mainwindow.h \
     huffmantree.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     decodemachine.h \
     nodeitem.h \
     treescene.h \
-    treedialog.h
+    treedialog.h \
+    treeline.h
 
 FORMS    += mainwindow.ui \
     treedialog.ui

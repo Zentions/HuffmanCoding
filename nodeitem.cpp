@@ -2,13 +2,15 @@
 #include <QGraphicsEffect>
 #include <QGraphicsBlurEffect>
 #include <QGraphicsColorizeEffect>
+#include <typeinfo>
 NodeItem::NodeItem(QString text,NodeItem *leftNode,NodeItem *rightNode)
 {
+   isLeft = true;
    point.setX(0);
    point.setY(0);
    Visited = false;
    this->text = text;
-   brushColor = Qt::green;
+   brushColor = Qt::red;
    this->leftNode = leftNode;
    this->rightNode = rightNode;
    leftLine = NULL;
@@ -84,4 +86,21 @@ void NodeItem::setPosition(qreal ax, qreal ay)
     point.setY(ay);
     setPos(ax,ay);
 
+}
+bool NodeItem::isCollided()
+{
+     QList<QGraphicsItem *> list = collidingItems();
+     for(int i=0;i< list.size();i++)
+     {
+         if(typeid(*list.at(i))==typeid(NodeItem))
+         {
+             return true;
+         }
+     }
+     return false;
+}
+void NodeItem::collideMove()
+{
+    if(isLeft) moveBy(-15,0);
+    else moveBy(15,0);
 }

@@ -19,7 +19,8 @@ public:
     void move(NodeItem *first,NodeItem *second,NodeItem *parent);
     void moveTree(NodeItem *item,qreal x1,qreal y1,qreal x2,qreal y2,QParallelAnimationGroup *group);
     QPropertyAnimation *setNodeAnimation(NodeItem *item,qreal x1,qreal y1,qreal x2,qreal y2);
-    //QPropertyAnimation *setLineAnimation(QGraphicsLineItem *item,qreal x1,qreal y1,qreal x2,qreal y2);
+    QPropertyAnimation *setLineAnimation(TreeLine *item,qreal x1,qreal y1,qreal x2,qreal y2);
+    void adjust(NodeItem *item);
 };
 
 #endif // TREESCENE_H

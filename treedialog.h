@@ -23,16 +23,11 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::TreeDialog *ui;
     TreeScene *treeScene;
-
-
-
-    QGraphicsScene *scene;
-    NodeItem *item;
-    NodeItem *item1;
-    NodeItem *item3;
 };
 
 #endif // TREEDIALOG_H
