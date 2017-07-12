@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     nodeitem.cpp \
     treescene.cpp \
     treedialog.cpp \
-    treeline.cpp
+    treeline.cpp \
+    sendfiledialog.cpp
 
 HEADERS  += mainwindow.h \
     huffmantree.h \
@@ -31,7 +32,12 @@ HEADERS  += mainwindow.h \
     nodeitem.h \
     treescene.h \
     treedialog.h \
-    treeline.h
+    treeline.h \
+    sendfiledialog.h
 
 FORMS    += mainwindow.ui \
-    treedialog.ui
+    treedialog.ui \
+    sendfiledialog.ui
+
+TRANSLATIONS+=china.ts
+QT+=network

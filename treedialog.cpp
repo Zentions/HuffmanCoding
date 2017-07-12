@@ -8,7 +8,7 @@ TreeDialog::TreeDialog(int *weight,int num,QWidget *parent) :
 {
     ui->setupUi(this);
     treeScene = new TreeScene(weight,num);
-   ui->graphicsView->setScene(treeScene);
+    ui->graphicsView->setScene(treeScene);
 
 }
 

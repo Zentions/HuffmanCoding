@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>120</y>
+      <y>80</y>
       <width>71</width>
       <height>21</height>
      </rect>
@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>180</y>
+      <y>140</y>
       <width>71</width>
       <height>21</height>
      </rect>
@@ -156,7 +156,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>240</y>
+      <y>200</y>
       <width>71</width>
       <height>21</height>
      </rect>
@@ -165,17 +165,30 @@ p, li { white-space: pre-wrap; }
      <string>校验</string>
     </property>
    </widget>
-   <widget class="QToolButton" name="toolButton_4">
+   <widget class="QToolButton" name="treeButton">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>300</y>
+      <y>320</y>
       <width>91</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
      <string>哈夫曼树生成</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>260</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>发送电文</string>
     </property>
    </widget>
   </widget>

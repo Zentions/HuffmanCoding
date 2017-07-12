@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QTime>
+#include "sendfiledialog.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -60,8 +61,7 @@ void MainWindow::on_toolButton_3_clicked()
         QMessageBox::about(this, "提示", "解码成功");
     else QMessageBox::information(this,"Error Message","解码失败，请检查");
 }
-
-void MainWindow::on_toolButton_4_clicked()
+void MainWindow::on_treeButton_clicked()
 {
     if(weight==NULL){
         QMessageBox::information(this,"Error Message","未添加过要编码的内容");
@@ -69,4 +69,10 @@ void MainWindow::on_toolButton_4_clicked()
     }
    TreeDialog *log = new TreeDialog(weight,num);
    log->show();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    SendFileDialog *dialog = new SendFileDialog ;
+    dialog->exec();
 }
